@@ -1,24 +1,26 @@
 {
-    "compilerOptions": {
-        "target": "ESNext",
-        "module": "CommonJS",
-        "outDir": "./dist",
-        "strict": true,
-        "esModuleInterop": true,
-        "skipLibCheck": true,
-        "forceConsistentCasingInFileNames": true,
-        "baseUrl": "./",
-        "paths": {
-            "*": [
-                "src/*"
-            ]
-        }
-    },
-    "include": [
-        "app.ts",
-        "src/**/*.ts"
-    ],
-    "exclude": [
-        "node_modules"
-    ],
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "module": "commonjs",
+    "target": "ESNext",
+    "outDir": "./dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "Node",
+  },
+  "include": [
+    "app.ts",
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "temp"
+  ],
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
+  }
 }

@@ -1,21 +1,18 @@
+import './src/helpers/loadEnv'
 import express, { Request, Response } from 'express';
-import dotenv from 'dotenv';
+import logger from 'morgan';
+import { StatusCodes } from 'http-status-codes';
+import cors from 'cors';
+import https from 'https';
+import fs from 'fs';
+import { notesRouter } from './src/routes/notes';
 
-dotenv.config();
 
-const logger = require('morgan');
-const { StatusCodes } = require('http-status-codes');
-const cors = require('cors');
-const https = require('https');
-const fs = require('fs');
-
-const port = process.env.PORT || '30000';
-
-const indexRouter = require('./routes/index');
+const port = process.env.PORT;
 
 const app = express();
 
-app.use(logger('dev'));
+// app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
@@ -29,7 +26,7 @@ app.use((req: Request, res: Response) => {
 app.use((err: any, req: Request, res: Response) => {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-  res.status(err.status || StatusCodes.INTERNAL_SERVER_ERROR);
+  res.status(err?.status || StatusCodes.INTERNAL_SERVER_ERROR);
   res.render('error');
 });
 
