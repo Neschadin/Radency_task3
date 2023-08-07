@@ -1,9 +1,9 @@
-import './src/helpers/loadEnv';
+import { serverPort } from './src/helpers/loadEnv';
 import express, { Request, Response } from 'express';
 import cors from 'cors';
 import { notesRouter } from './src/routes/notesRouter';
 
-const port = process.env.PORT;
+const port = serverPort;
 
 const app = express();
 
@@ -29,9 +29,9 @@ app.listen(port, () => {
 });
 
 process.on('uncaughtException', (err: Error) => {
-  console.error("Server uncaught exception", err.message);
+  console.error('Server uncaught exception', err.message);
 });
 
 process.on('unhandledRejection', (err: Error) => {
-  console.error("Server unhandled rejection", err.message);
+  console.error('Server unhandled rejection', err.message);
 });
