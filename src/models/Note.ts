@@ -1,5 +1,7 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../services/db.config';
+import { CATEGORIES } from '../constants';
+import { formattedDate } from '../helpers/utils';
 
 export const Note = sequelize.define(
   'Note',
@@ -17,7 +19,7 @@ export const Note = sequelize.define(
     category: {
       type: DataTypes.ENUM,
       allowNull: false,
-      values: ['Task', 'Random Thought', 'Idea'],
+      values: CATEGORIES,
     },
     content: {
       type: DataTypes.TEXT,
@@ -27,26 +29,20 @@ export const Note = sequelize.define(
       type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: true,
     },
-    archived: {
+    isArchived: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false,
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      get() {
+        return formattedDate(this.dataValues.createdAt);
+      },
     },
   },
   {
     tableName: 'notes',
   }
 );
-
-(async () => {
-  await sequelize.sync({ force: true }); // Sync the model with the database
-
-  // Create a new note
-  const newNote = await Note.create({
-    name: 'New Note',
-    category: 'Task',
-    content: 'This is a new note.',
-  });
-
-  console.log(newNote);
-})();
