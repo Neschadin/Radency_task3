@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 import { Note } from '../models/Note';
-import { validateId, validateNoteData } from '../helpers/validator';
-import { extractDates } from '../helpers/utils';
+import { validateId, validateNoteData, extractDates } from '../helpers';
 
 const noteController = {
   getAllNotes: async (req: Request, res: Response) => {

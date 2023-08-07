@@ -1,4 +1,4 @@
-import { serverPort } from './src/helpers/loadEnv';
+import { serverPort } from './src/helpers';
 import express, { Request, Response } from 'express';
 import cors from 'cors';
 import { notesRouter } from './src/routes/notesRouter';

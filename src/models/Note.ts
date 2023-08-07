@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../services/db.config';
 import { CATEGORIES } from '../constants';
-import { formattedDate } from '../helpers/utils';
+import { formattedDate } from '../helpers';
 
 export const Note = sequelize.define(
   'Note',
