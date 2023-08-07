@@ -3,8 +3,6 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import { notesRouter } from './src/routes/notesRouter';
 
-const port = serverPort;
-
 const app = express();
 
 app.use(express.json());
@@ -24,8 +22,8 @@ app.use((err: any, req: Request, res: Response) => {
   res.render('error');
 });
 
-app.listen(port, () => {
-  console.log(`Server is listening on port ${port}`);
+app.listen(serverPort, () => {
+  console.log(`Server is listening on port ${serverPort}`);
 });
 
 process.on('uncaughtException', (err: Error) => {
